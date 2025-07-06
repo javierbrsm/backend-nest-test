@@ -1,13 +1,13 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: lab-jbs
+  name: lab-test-jbs
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: backend-nest-test-jbs
-  namespace: lab-jbs
+  namespace: lab-test-jbs
   labels:
     app: backend-nest-test-jbs
 spec:
@@ -31,7 +31,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: backend-nest-svc
-  namespace: lab-jbs
+  namespace: lab-test-jbs
   labels:
     app: backend-nest-svc
 spec:
@@ -46,7 +46,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: ingress-backend-nest-test-jbs
-  namespace: lab-jbs
+  namespace: lab-test-jbs
 spec:
   ingressClassName: nginx
   rules:
@@ -57,6 +57,6 @@ spec:
         pathType: ImplementationSpecific
         backend:
           service:
-            name: backend-nest-svc
+            name: backend-nest-test-jbs-svc
             port:
               number: 80
