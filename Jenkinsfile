@@ -66,5 +66,20 @@ pipeline {
                 }
             }
         }
+
+        stage ("actualizacion de kubernetes") {
+            agent {
+                docker {
+                    image 'alpine/k8s:1.30.2'
+                    reuseNode true
+                }
+            }
+            steps {
+                withKubeConfig([credentialsId: 'gcp-kubeconfig']) {
+                    sh "kubectl -n lab-jbs set image deployments/backend-nest-jbs backend-nest-jbs=${dockerImagePrefix}/backend-nest-test-jbs:${BUILD_NUMBER}"
+                }
+            }
+        }
+
     }
 }
