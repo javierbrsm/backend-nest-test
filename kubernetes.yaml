@@ -6,23 +6,23 @@ metadata:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: backend-nest-jbs
+  name: backend-nest-test-jbs
   namespace: lab-jbs
   labels:
-    app: backend-nest-jbs
+    app: backend-nest-test-jbs
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: backend-nest-jbs
+      app: backend-nest-test-jbs
   template:
     metadata:
       labels:
-        app: backend-nest-jbs
+        app: backend-nest-test-jbs
     spec:
       containers:
-      - name: backend-nest-jbs
-        image: us-west1-docker.pkg.dev/lab-agibiz/docker-repository/backend-nest-jbs
+      - name: backend-nest-test-jbs
+        image: us-west1-docker.pkg.dev/lab-agibiz/docker-repository/backend-nest-test-jbs
         imagePullPolicy: Always
       imagePullSecrets:
       - name: regcred
@@ -36,7 +36,7 @@ metadata:
     app: backend-nest-svc
 spec:
   selector:
-     app: backend-nest-jbs
+     app: backend-nest-test-jbs
   ports:
   - protocol: TCP
     port: 80
@@ -45,7 +45,7 @@ spec:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: ingress-backend-nest-jbs
+  name: ingress-backend-nest-test-jbs
   namespace: lab-jbs
 spec:
   ingressClassName: nginx
