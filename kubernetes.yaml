@@ -30,10 +30,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: backend-nest-svc
+  name: backend-nest-test-jbs-svc
   namespace: lab-test-jbs
   labels:
-    app: backend-nest-svc
+    app: backend-nest-test-jbs-svc
 spec:
   selector:
      app: backend-nest-test-jbs
